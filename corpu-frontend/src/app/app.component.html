@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+
+<div class="app-body">
+    <app-sidebar></app-sidebar>
+
+    <main class="main">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#/">Home</a>
+            </li>
+
+            <li class="breadcrumb-item active">
+                <span>Dashboard</span>
+            </li>
+        </ol>
+
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
+</div>
+
+<footer class="app-footer">
+    <a href="http://www.pegadaian.co.id">&copy; 2017 Development Team</a>
+    <span class="float-right">Made with love for a better life</span>
+</footer>
