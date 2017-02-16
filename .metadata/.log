@@ -202,3 +202,12 @@ Caused by: java.net.SocketTimeoutException: Read timed out
 
 !ENTRY org.eclipse.core.net 1 0 2017-02-16 00:09:03.112
 !MESSAGE System property http.proxyPort is not set but should be 3128.
+
+!ENTRY org.apache.ivyde.eclipse 1 0 2017-02-16 00:12:10.319
+!MESSAGE starting IvyDE plugin
+
+!ENTRY org.apache.ivyde.eclipse 1 0 2017-02-16 00:12:10.345
+!MESSAGE IvyDE plugin started
+
+!ENTRY org.eclipse.wst.common.project.facet.core 4 0 2017-02-16 00:13:04.587
+!MESSAGE Project facet grails.app has not been defined. It is used in plugin com.vmware.vfabric.ide.eclipse.tcserver.core.
