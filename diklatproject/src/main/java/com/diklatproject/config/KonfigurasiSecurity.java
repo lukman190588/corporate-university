@@ -16,7 +16,8 @@ public class KonfigurasiSecurity extends ResourceServerConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests().anyRequest().authenticated();
+		.authorizeRequests().anyRequest().permitAll();
+//			.authorizeRequests().anyRequest().authenticated();
 	}
 	
 	@Override

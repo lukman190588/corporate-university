@@ -1,20 +1,19 @@
 package com.diklatproject.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.diklatproject.entity.TblMateri;
-import java.lang.String;
-import java.util.List;
 
 public interface TblMateriDao extends JpaRepository<TblMateri, String>{
 
-	public TblMateri findByNama(String nama);
+	List<TblMateri> findByNamaLikeAndTipeAndWaktu(String nama, String tipe, int waktu);
 	
 	List<TblMateri> findById(String id);
 	
-	@Query("select m from tbl_materi m where m.nama = :nama and u.tipe = :tipe")
-	List<TblMateri> findMateriBy();
+	@Query("select m from TblMateri m where m.nama like :nama and m.tipe = :tipe and m.waktu = :tipe")
+	List<TblMateri> findMateriBy(String nama, String tipe, int waktu);
+	
 }

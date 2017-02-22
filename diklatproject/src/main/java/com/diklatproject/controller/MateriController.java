@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +19,10 @@ public class MateriController {
 	@Autowired
 	private TblMateriDao materiDao;
 
+	/**
+	 * RequestMapping request all records from tblmateri
+	 * @return
+	 */
 	@RequestMapping("/semua-materi")
 	public List<TblMateri> getAllMateri() {
 		List<TblMateri> listMater = (List<TblMateri>) materiDao.findAll();
@@ -28,6 +30,13 @@ public class MateriController {
 		return listMater;
 	}
 
+	/**
+	 * RequestMapping with fixed PathVariable 
+	 * @param nama
+	 * @param tipe
+	 * @param waktu
+	 * @return
+	 */
 	@RequestMapping("/materi/search/{tipe}-{waktu}")
 	public List<TblMateri> addMateri(@PathVariable String nama, @PathVariable String tipe, @PathVariable int waktu) {
 		TblMateri materi = new TblMateri(nama, tipe, waktu);
@@ -36,24 +45,26 @@ public class MateriController {
 		return listMateri;
 	}
 
-
-
-	
-
-	@RequestMapping(value = "/materi/search", params = { "tipe", "waktu" })
-	public List<TblMateri> getMateriByParam(@RequestParam("tipe") String tipe, @RequestParam("waktu") int waktu) {
-		TblMateri materi = new TblMateri();
-		if (tipe != null) {
-			materi.setTipe(tipe);
-		}
-		if (waktu > 0) {
-			materi.setWaktu(waktu);
-		}
-		Example<TblMateri> exMateri = Example.of(materi);
-		List<TblMateri> listMateri = materiDao.findAll(exMateri);
+	/**
+	 * RequestMapping with RequestParam required true and-or false
+	 * @param nama
+	 * @param tipe
+	 * @param waktu
+	 * @returns
+	 */
+	@RequestMapping(value = "/materi/search")
+	public List<TblMateri> getMateriByParam(
+			@RequestParam(value = "nama", required = false) String nama,
+			@RequestParam(value = "tipe", required = true) String tipe,
+			@RequestParam(value = "waktu", required = true) int waktu) {
+		List<TblMateri> listMateri = materiDao.findByNamaLikeAndTipeAndWaktu("%" + nama + "%", tipe, waktu);
 		return listMateri;
 	}
 
+	/**
+	 * RequestMapping test hardcoded id
+	 * @return
+	 */
 	@RequestMapping("/materi-pertama")
 	public TblMateri getMateri() {
 		TblMateri listMateri = materiDao.findOne("11001");
