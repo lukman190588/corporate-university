@@ -1,49 +1,31 @@
 package com.diklatproject.config;
 
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
 
 @EnableWebSecurity
-public class KonfigurasiSecurity extends WebSecurityConfigurerAdapter {
-
-	@Autowired
-	DataSource dataSource;
-
+@EnableResourceServer
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class KonfigurasiSecurity extends ResourceServerConfigurerAdapter {
+	
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+	public void configure(HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests()
-			.antMatchers("/css/**", "/greeting").permitAll();
-//			.anyRequest().authenticated()
-//            .and().formLogin().loginPage("/login").permitAll()
-//            .defaultSuccessUrl("/home", true)
-//            .and().logout().permitAll();
+			.authorizeRequests().anyRequest().authenticated();
 	}
 	
 	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication().dataSource(dataSource)
-		.passwordEncoder(passwordEncoder())
-        .usersByUsernameQuery("select username, password, active as enabled from s_user where username=?")
-        .authoritiesByUsernameQuery("select u.username, p.name as authority " +
-        "from s_user u " +
-        "inner join s_user_role ur on u.id = ur.id_user " +
-        "inner join s_role r on r.id = ur.id_role " +
-        "inner join s_role_permission rp on r.id = rp.id_role " +
-        "inner join s_permission p on p.id = rp.id_permission " +
-        "where u.username=?");
-	}
-	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
+	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+		RemoteTokenServices remoteToken = new RemoteTokenServices();
+		remoteToken.setClientId("tabunganapp"); // cek appid
+		remoteToken.setClientSecret("app123456"); // cek secret
+		remoteToken.setCheckTokenEndpointUrl("http://localhost:10000/oauth/check_token");
+		
+		resources.tokenServices(remoteToken);
 	}
 }
