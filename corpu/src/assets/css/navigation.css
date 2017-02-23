@@ -1,0 +1,137 @@
+.logo-wrapper {
+    padding-top: 12px;
+}
+
+
+/*.logo-bni {
+    display: inline-block;
+    width: 80%;
+}
+
+.logo-bni img {
+    width: 100%;
+    max-width: 130px;
+}
+
+.logo-universitas {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+}
+
+.logo-universitas img {
+    max-width: 150px;
+    width: 100%;
+}*/
+
+.navbar-default {
+    background: none;
+    /* height: 90px; */
+    margin: 0;
+    background: #fff;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
+    background: none;
+    font-family: "Roboto-Light";
+    color: #303030;
+}
+
+.navbar-default .navbar-toggle {
+    margin-top: 15px;
+    border: none;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    height: 3px;
+    width: 30px;
+    background: #006e89;
+}
+
+.navbar-toggle .icon-bar+.icon-bar {
+    margin-top: 5px;
+}
+
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover {
+    background: none;
+}
+
+nav {}
+
+nav .container {
+    height: 100%;
+    /* margin: 0; */
+    /* width: 100%; */
+}
+
+nav .navbar-header {
+    height: 100%;
+}
+
+nav .logo {
+    /* max-width: 150px; */
+    padding: 0 10px;
+}
+
+nav .logo img {
+    width: 100%;
+}
+
+.navbar-nav {
+    margin-top: 15px;
+    margin-right: 0;
+    margin-bottom: 10px;
+}
+
+#navbar .navigation {}
+
+.nav-menu>li.active a {
+    font-family: "Roboto-Bold" !important;
+    color: #F16136 !important;
+}
+
+#navbar li a {
+    font-family: "Roboto-Light";
+    font-size: 18px;
+    padding: 0 40px;
+}
+
+
+/*#navbar li a:last-child {
+    padding-right: 0px;
+}*/
+
+#navbar li a:hover {
+    font-family: "Roboto-Bold";
+    color: #F16136;
+}
+
+#navbar .link-nav {
+    width: 100%;
+    max-width: 800px;
+    margin: 0;
+}
+
+.search {
+    margin: 15px;
+}
+
+.search input {
+    border: none;
+    border-bottom: 1px solid;
+    width: 110px;
+    border-color: #303030;
+}
+
+.search input:hover {
+    box-shadow: none;
+}
+
+.search .glyphicon {
+    margin-left: -15px;
+    font-size: 10px;
+    color: #303030;
+}

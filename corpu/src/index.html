@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Corpu</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script>
+    <link href="assets/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/plugin/font-awesome-4.4.0/css/font-awesome.min.css">
+    <link href="assets/plugin/bxslider/css/jquery.bxslider.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/navigation.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+    <app-root>Loading...</app-root>
+    <script src="assets/plugin/bxslider/js/jquery.bxslider.min.js"></script>
+    <script src="assets/plugin/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+            var ht = $(window).width() / 1.55;
+            $('.cover-wrap').css({
+                'height': ht + 'px'
+            });
+
+            $(window).resize(function() {
+                var ht = $(window).width() / 1.55;
+                $('.cover-wrap').css({
+                    'height': ht + 'px'
+                });
+            });
+        });
+
+        $(function() {
+            $('.nav-menu a[href*=#]:not([href=#])').click(function() {
+                $('.nav-menu li').removeClass('active');
+                $(this).parent().addClass('active');
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html,body').animate({
+                            scrollTop: target.offset().top - 105
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
+        });
+        $(document).ready(function() {
+            $('.bxslider').bxSlider({
+                pager: false,
+                nextSelector: '#slider-next',
+                prevSelector: '#slider-prev',
+                nextText: '',
+                prevText: '',
+                infiniteLoop: false,
+                hideControlOnEnd: true
+            });
+
+            $('.box-galeri').click(function(e) {
+                $('.box-galeri').removeClass('active');
+                $(this).addClass('active');
+                $('.show-box img').attr('src', $(this).find('img').attr('src'));
+            });
+
+            $('.box-program').click(function(e) {
+                if ($(this).hasClass('active')) {
+                    $(this).removeClass('active');
+                    $('.box-program').css({
+                        "opacity": "1"
+                    });
+                    $('.box-program').find(".icon").hide();
+                    $('.program-description').hide();
+                } else {
+                    $('.box-program').removeClass('active');
+                    $(this).addClass('active');
+
+                    $('.box-program').css({
+                        "opacity": ".6"
+                    });
+                    $('.box-program').find(".icon").hide();
+                    $('.program-description').hide();
+
+                    $(this).css({
+                        "opacity": "1"
+                    });
+                    $(this).find(".icon").show();
+                    $('.program-description.program-' + $(this).attr("index")).show();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
