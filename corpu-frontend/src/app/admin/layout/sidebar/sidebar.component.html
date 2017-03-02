@@ -1,0 +1,86 @@
+<div class="sidebar" *ngIf="authService.sudahLogin()">
+    <nav class="sidebar-nav">
+        <ul class="nav">
+            <li class="nav-item">
+                <br>
+                <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/admin/dahsboard']"><i class="icon-speedometer "></i> Dashboard</a>
+            </li>
+            <li class="divider"></li>
+            <li class="nav-title">Activities</li>
+
+            <li class="nav-item">
+                <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/admin/activities/basic-forms']"><i class="icon-note "></i> Plan</a>
+            </li>
+
+            <li class="nav-item nav-dropdown" routerLinkActive="open">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-calendar"></i> Event</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/icons/font-awesome']"><i class="icon-action-redo "></i> Event</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/icons/simple-line-icons']"><i class="icon-action-redo "></i> Assessment</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item nav-dropdown" routerLinkActive="open">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-book-open "></i> Evaluate</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/icons/font-awesome']"><i class="icon-action-redo "></i> Event</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/icons/simple-line-icons']"><i class="icon-action-redo "></i> Class</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="divider"></li>
+            <li class="nav-title">Parameter</li>
+
+            <li class="nav-item nav-dropdown" routerLinkActive="open">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-user-following "></i> User</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/icons/font-awesome']"><i class="icon-action-redo "></i> User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/icons/simple-line-icons']"><i class="icon-action-redo "></i> Role</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/icons/simple-line-icons']"><i class="icon-action-redo "></i> Permission</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/icons/simple-line-icons']"><i class="icon-action-redo "></i> User Role</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/icons/simple-line-icons']"><i class="icon-action-redo "></i> Role Permission</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item nav-dropdown" routerLinkActive="open">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-list "></i> Event</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/icons/font-awesome']"><i class="icon-action-redo "></i> Class</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/icons/simple-line-icons']"><i class="icon-action-redo "></i> Lesson</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/icons/simple-line-icons']"><i class="icon-action-redo "></i> Participant</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/icons/simple-line-icons']"><i class="icon-action-redo "></i> Instructor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/icons/simple-line-icons']"><i class="icon-action-redo "></i> Lookup</a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </nav>
+</div>
