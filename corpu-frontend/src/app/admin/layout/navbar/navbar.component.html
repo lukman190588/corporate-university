@@ -1,0 +1,25 @@
+<header class="app-header navbar" *ngIf="authService.sudahLogin()">
+    <button class="navbar-toggler mobile-sidebar-toggler hidden-lg-up" type="button">&#9776;</button>
+    <a class="navbar-brand" href="#"></a>
+    <ul class="nav navbar-nav hidden-md-down">
+        <li class="nav-item">
+            <a class="nav-link navbar-toggler sidebar-toggler" *ngIf="authService.sudahLogin()">&#9776;</a>
+        </li>
+    </ul>
+    
+    <ul class="nav navbar-nav ml-auto" *ngIf="authService.sudahLogin()">
+        <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle>
+                <img src="../../../../img/avatar/avatar.png" class="img-avatar" alt="">
+                <span class="hidden-md-down"><b>{{currentUser().fullname}}</b></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" dropdownMenu aria-labelledby="simple-dropdown">
+
+                <a class="dropdown-item"  routerLink="about"><i class="icon-user"></i> Informasi</a>
+                <div class="divider"></div>
+                <a class="dropdown-item"  (click)="logout()"><i class="icon-logout"></i> Logout</a>
+            </div>
+        </li>
+    </ul>
+
+</header>

@@ -1,10 +1,10 @@
-import { CoreUIPage } from './app.po';
+import { TabunganEmasPage } from './app.po';
 
-describe('core-ui App', function() {
-  let page: CoreUIPage;
+describe('tabungan-emas App', function() {
+  let page: TabunganEmasPage;
 
   beforeEach(() => {
-    page = new CoreUIPage();
+    page = new TabunganEmasPage();
   });
 
   it('should display message saying app works', () => {

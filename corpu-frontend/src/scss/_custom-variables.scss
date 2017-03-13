@@ -3,7 +3,7 @@
 $enable-sidebar-nav-rounded: false;
 
 $border-color: $gray-lighter;
-$layout-transition-speed: .25s;
+$layout-transition-speed: .60s;
 
 
 // Social Colors
@@ -46,19 +46,19 @@ $navbar-border: (
     color:                      $border-color
   )
 );
-$navbar-brand-width:                155px;
-$navbar-brand-bg:                   #fff;
+$navbar-brand-width:                200px;
+$navbar-brand-bg:                   #ffffff;
 $navbar-brand-logo:                 url('../img/logo.png');
-$navbar-brand-logo-size:            70px auto;
+$navbar-brand-logo-size:            150px auto;
 $navbar-brand-border: (
   bottom: (
-    size:                       1px,
+    size:                       0px,
     style:                      solid,
     color:                      $border-color
   )
 );
 
-$navbar-color:                      rgba(0,0,0,.3);
+$navbar-color:                      #005349;
 $navbar-hover-color:                rgba(0,0,0,.6);
 $navbar-active-color:               rgba(0,0,0,.8);
 $navbar-disabled-color:             rgba(0,0,0,.15);
