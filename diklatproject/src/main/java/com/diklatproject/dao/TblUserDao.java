@@ -8,5 +8,5 @@ import com.diklatproject.entity.TblUser;
 
 public interface TblUserDao extends JpaRepository<TblUser, String>{
 
-	List<TblUser> findAllUsers();
+	List<TblUser> findById(String id);
 }

@@ -5,10 +5,12 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "plan_participant")
+@IdClass(TblPlanParticipantId.class)
 public class TblPlanParticipant implements Serializable {
 
 	/**
