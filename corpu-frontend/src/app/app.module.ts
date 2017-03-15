@@ -32,10 +32,8 @@ import { FooterComponent } from './front/footer/footer.component';
 import { p404Component } from './404/404.component';
 
 //content
-import { DahsboardComponent } from './admin/dahsboard/dahsboard.component';
-
-
-
+import { TablesatuComponent } from './admin/tablesatu/tablesatu.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -47,13 +45,14 @@ import { DahsboardComponent } from './admin/dahsboard/dahsboard.component';
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
     AdminComponent,
-    DahsboardComponent,
     FrontComponent,
     NavbarComponent,
     NavComponent,
     ContentComponent,
     FooterComponent,
-    p404Component
+    p404Component,
+    TablesatuComponent,
+    DashboardComponent,
   ],
   imports: [
     AppRoutingModule,

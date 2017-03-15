@@ -3,13 +3,13 @@
         <ul class="nav">
             <li class="nav-item">
                 <br>
-                <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/admin/dahsboard']"><i class="icon-speedometer "></i> Dashboard</a>
+                <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/admin/dashboard']"><i class="icon-speedometer "></i> Dashboard</a>
             </li>
             <li class="divider"></li>
             <li class="nav-title">Activities</li>
 
             <li class="nav-item">
-                <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/admin/activities/basic-forms']"><i class="icon-note "></i> Plan</a>
+                <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/admin/tablesatu']"><i class="icon-note "></i> Table Bind Test</a>
             </li>
 
             <li class="nav-item nav-dropdown" routerLinkActive="open">

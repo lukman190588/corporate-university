@@ -13,13 +13,14 @@ import { FrontComponent } from './templates/front.component';
 import { p404Component } from './404/404.component';
 
 //content
-import { DahsboardComponent } from './admin/dahsboard/dahsboard.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { TablesatuComponent } from './admin/tablesatu/tablesatu.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: FrontComponent,
-    pathMatch : 'full'
+    pathMatch: 'full'
   },
   {
     path: 'admin',
@@ -33,13 +34,18 @@ export const routes: Routes = [
         loadChildren: './admin/login/login.module#LoginModule',
       },
       {
-        path: 'dahsboard',
-        component: DahsboardComponent,
+        path: 'dashboard',
+        component: DashboardComponent,
+        canActivate: [CekLoginGuard]
+      },
+      {
+        path: 'tablesatu',
+        component: TablesatuComponent,
         canActivate: [CekLoginGuard]
       }
     ]
   },
- { path: '**', component: p404Component }
+  { path: '**', component: p404Component }
 
 ];
 

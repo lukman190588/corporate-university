@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 		this.authService.login(this.username, this.password)
 			.then(sukses => {
 				if (sukses) {
-					this.router.navigate(['/admin/dahsboard']);
+					this.router.navigate(['/admin/dashboard']);
 				} else {
 					console.log("Login gagal");
 				}

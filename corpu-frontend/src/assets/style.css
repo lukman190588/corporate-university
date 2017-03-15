@@ -86,7 +86,7 @@ header .highlight, header .current a{
   font-weight:bold;
 }
 
-header a:hover{
+header .warna a:hover{
   color:#004e44 !important;
   text-decoration: none;
   border-bottom: 5px solid #004e44;
@@ -96,16 +96,30 @@ header a:hover{
 }
 
 /* corporate*/
-#corporate{
+/*#corporate{
   min-height:400px;
   background:url('./../../assets/img/showcase.jpg') no-repeat 0 -400px;
   text-align:center;
   color:#ffffff;
   margin-top: 60px;
+}*/
+
+#corporate{
+  min-height:700px;
+  background-image:url('./../../assets/img/showcase.jpg');
+  text-align:center;
+  color:#ffffff;
+  margin-top: 60px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #corporate h1{
-  margin-top:100px;
+  margin-top:25%;
   font-size:55px;
   margin-bottom:10px;
 }
@@ -114,9 +128,9 @@ header a:hover{
   font-size:20px;
 }
 
-
 /*beranda Boxes */
 #boxes{
+  min-height: 300px;
   margin-top: 20px;
   margin-top: 60px;
 }
@@ -124,7 +138,7 @@ header a:hover{
 #boxes .box{
   float:left;
   text-align: center;
-  width:30%;
+  width:33%;
   padding:10px;
 }
 
@@ -134,7 +148,20 @@ header a:hover{
 
 /*visi-misi */
 #visi-misi{
-  background-color: #afafaf;
+  min-height:700px;
+  color:#ffffff;
+  /*background-color: #afafaf;*/
+  background-image:url('./../../assets/img/showcase.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#visi-misi h1{
+  margin-top:25%;
+  font-size:55px;
+  margin-bottom:10px;
 }
 
 #visi-misi .box{
@@ -154,7 +181,7 @@ header a:hover{
 #tentang-logo .box{
   float:left;
   text-align: center;
-  width:30%;
+  width:33%;
 }
 
 #tentang-logo .box img{

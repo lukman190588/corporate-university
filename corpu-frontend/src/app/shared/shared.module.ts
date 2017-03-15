@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 
 import { AuthService } from './auth.service';
 
-function authHttpServiceFactory(http: Http, options: RequestOptions) {
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
 	  	tokenName: 'access_token'
 	  }), http, options);

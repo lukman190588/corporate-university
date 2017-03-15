@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     CommonModule
   ],
-  declarations: [ LoginComponent ]
+  declarations: [LoginComponent,
+  ]
 })
 export class LoginModule { }
