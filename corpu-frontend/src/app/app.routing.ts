@@ -15,6 +15,8 @@ import { p404Component } from './404/404.component';
 //content
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { TablesatuComponent } from './admin/tablesatu/tablesatu.component';
+import { FormsatuComponent } from './admin/formsatu/formsatu.component';
+
 
 export const routes: Routes = [
   {
@@ -41,6 +43,11 @@ export const routes: Routes = [
       {
         path: 'tablesatu',
         component: TablesatuComponent,
+        canActivate: [CekLoginGuard]
+      },
+      {
+        path: 'formsatu',
+        component: FormsatuComponent,
         canActivate: [CekLoginGuard]
       }
     ]
