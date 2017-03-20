@@ -37,7 +37,8 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 
 import { AdminmoduleModule } from './admin/adminmodule/adminmodule.module';
 import { Ng2PaginationModule } from 'ng2-pagination';
-import { FormsatuComponent } from './admin/formsatu/formsatu.component'; // <-- import the module
+import { FormsatuComponent } from './admin/formsatu/formsatu.component';
+import { TableduaComponent } from './admin/tabledua/tabledua.component'; // <-- import the module
 // import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
@@ -59,6 +60,7 @@ import { FormsatuComponent } from './admin/formsatu/formsatu.component'; // <-- 
     TablesatuComponent,
     DashboardComponent,
     FormsatuComponent,
+    TableduaComponent,
   ],
   imports: [
     AppRoutingModule,

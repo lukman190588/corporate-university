@@ -12,6 +12,9 @@
                 <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/admin/tablesatu']"><i class="icon-note "></i> Table Bind Test</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/admin/tabledua']"><i class="icon-note "></i> Table Server Paging</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" *ngIf="authService.sudahLogin()" routerLinkActive="active" [routerLink]="['/admin/formsatu']"><i class="icon-note "></i> Form Save Test</a>
             </li>
 

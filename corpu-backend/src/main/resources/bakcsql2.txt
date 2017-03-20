@@ -25,5 +25,6 @@ ALTER TABLE Event_Evaluate ADD INDEX FKEvent_Eval695601 (id_survey), ADD CONSTRA
 ALTER TABLE Event_kelas_Evaluate ADD INDEX FKEvent_Clas723609 (id_event, id_kelas, id_lesson), ADD CONSTRAINT FKEvent_Clas723609 FOREIGN KEY (id_event, id_kelas, id_lesson) REFERENCES Event_kelas (id_event, id_kelas, id_lesson);
 ALTER TABLE Event_kelas_Evaluate ADD INDEX FKEvent_Clas931731 (id_survey), ADD CONSTRAINT FKEvent_Clas931731 FOREIGN KEY (id_survey) REFERENCES Parameter_Evaluate (id);
 ALTER TABLE Event_kelas_Evaluate ADD INDEX FKEvent_Clas72718 (id_event, id_kelas, id_participant), ADD CONSTRAINT FKEvent_Clas72718 FOREIGN KEY (id_event, id_kelas, id_participant) REFERENCES Event_Participant (id_event, id_kelas, id_participant);
+ALTER TABLE Event ADD INDEX FKEvent758865 (id, kelas), ADD CONSTRAINT FKEvent758865 FOREIGN KEY (id, kelas) REFERENCES Plan_Event (id, kelas);
 ALTER TABLE Plan_Participant ADD INDEX FKPlan_Parti310294 (id_event, id_kelas), ADD CONSTRAINT FKPlan_Parti310294 FOREIGN KEY (id_event, id_kelas) REFERENCES Plan_Event (id, kelas);
 ALTER TABLE Event_Participant ADD INDEX FKEvent_Part779893 (id_event, id_kelas), ADD CONSTRAINT FKEvent_Part779893 FOREIGN KEY (id_event, id_kelas) REFERENCES Event (id, kelas);

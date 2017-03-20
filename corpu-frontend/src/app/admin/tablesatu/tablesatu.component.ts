@@ -10,32 +10,22 @@ import { AuthService } from './../../shared/auth.service';
 })
 export class TablesatuComponent implements OnInit {
   dataUser: UserTable[];
-  collection: any[] = [
-    { name: 'Austin', gender: 'Male', company: 'Swimlane' },
-    { name: 'Dany', gender: 'Male', company: 'KFC' },
-    { name: 'Molly', gender: 'Female', company: 'Burger King' },
-  ];
 
-  rows = [
-    { name: 'Austin', gender: 'Male', company: 'Swimlane' },
-    { name: 'Dany', gender: 'Male', company: 'KFC' },
-    { name: 'Molly', gender: 'Female', company: 'Burger King' },
-  ];
-  columns = [
-    { prop: 'name' },
-    { name: 'Gender' },
-    { name: 'Company' }
-  ];
-
-  constructor(private adminservice: AdminserviceService, private authService : AuthService) { }
+  constructor(private adminservice: AdminserviceService, private authService: AuthService) { }
 
   ngOnInit() {
-    console.log("Masuk init")
+    this.bindAllUsers();
+  }
+
+  bindAllUsers() {
+    console.log("Bind Users")
     this.adminservice.getAllUser()
       .then(
-      hasil => this.dataUser = hasil,
-      () => console.log(this.dataUser),
-    );
+      hasil => {
+        this.dataUser = hasil;
+        console.log(this.dataUser[0]);
+      }
+      );
   }
 
 }
