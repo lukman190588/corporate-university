@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
+import { ModalModule } from 'ng2-bootstrap';
 
 import { AppComponent } from './app.component';
 
@@ -71,6 +72,7 @@ import { TableduaComponent } from './admin/tabledua/tabledua.component'; // <-- 
     SharedModule,
     AdminmoduleModule,
     Ng2PaginationModule,
+    ModalModule.forRoot(),
     // NgxDatatableModule,
   ],
   providers: [CekLoginGuard, AuthService],

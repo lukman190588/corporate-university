@@ -3,6 +3,7 @@ package com.id.corpu.backend.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.TreeMap;
 
 import javax.transaction.Transactional;
@@ -56,9 +57,15 @@ public class EventController {
 	    for (int pageNum = 0; pageNum < numPages;)
 	        listPaged.add(list.subList(pageNum * pageSize, Math.min(++pageNum * pageSize, list.size())));
 
-		TreeMap<String, Object> tResp = new TreeMap<String, Object>();
-		tResp.put("items", listPaged.get(pageNumber-1));
-		tResp.put("total", list.size());
-		return tResp;
+	    try {
+	    	TreeMap<String, Object> tResp = new TreeMap<String, Object>();
+	    	tResp.put("items", listPaged.get(pageNumber-1));
+	    	tResp.put("total", list.size());
+	    	Thread.sleep(new Random().nextInt((2000 - 500) + 1) + 500);
+	    	return tResp;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	    return null;
 	}
 }

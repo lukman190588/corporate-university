@@ -3,8 +3,8 @@ export class TblEvents {
     kelas: string;
     tahun: number;
     name: string;
-    startDate: string;
-    endDate: string;
+    startDate: Date;
+    endDate: Date;
     batch: number;
     group: string;
     event: string;
