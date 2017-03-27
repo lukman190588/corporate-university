@@ -24,20 +24,6 @@ export class AuthService {
 	}
 
 	login(username: string, password: string): Promise<boolean> {
-		if (username == "joko" && password == "1") {
-			let userObject = {
-				username: "joko",
-				fullname: "Joko Supriyatno",
-				permissions: [
-					"TRANSAKSI_VIEW",
-					"TRANSAKSI_EDIT",
-					"INFORMASI_VIEW"
-				]
-			};
-			localStorage.setItem(STORAGE_KEY_AUTH, JSON.stringify(userObject));
-			return Promise.resolve(true);
-		}
-
 		let url: string = "/oauth/token";
 		let body = new URLSearchParams()
 		body.append("grant_type", "password");
@@ -49,7 +35,7 @@ export class AuthService {
 			'Content-Type': 'application/x-www-form-urlencoded',
 			'Authorization': basicAuthHeader
 		});
-		return this.http.post(url, body, { headers: headers }).toPromise()
+		let loginResp: Promise<boolean> = this.http.post(url, body, { headers: headers }).toPromise()
 			.then(response => {
 				let token = response.json();
 				console.log(token);
@@ -67,7 +53,12 @@ export class AuthService {
 					return true;
 				}
 				return false;
-			}).catch(this.handleError);
+			}).catch(() => {
+				this.handleError;
+				return false;
+				}
+			);
+		return loginResp;
 	}
 
 	logout(): void {
@@ -75,8 +66,7 @@ export class AuthService {
 		localStorage.removeItem("access_token");
 	}
 
-	private handleError(error: any) {
-		// In a real world app, you might use a remote logging infrastructure
+	handleError(error: any) {
 		let errMsg: string;
 		errMsg = error.message ? error.message : error.toString();
 		console.error("server terputus");

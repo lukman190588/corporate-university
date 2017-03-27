@@ -47,10 +47,6 @@
         </tbody>
       </table>
       <div class="spinner text-center" *ngIf="loading"><br><br></div>
-      <!--<div class="text-center" *ngIf="loading">
-        <span class="fa fa-spinner fa-spin fa-3x"></span>
-        <br><br>
-      </div>-->
       <pagination-controls (pageChange)="getPage(p = $event)" id="server" class="text-center"></pagination-controls>
     </div>
   </div>
@@ -76,7 +72,7 @@
               <div class="form-group row">
                 <label for="tahun" class="col-sm-2 col-form-label">Tahun</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="tahun" name="tahun" placeholder="Tahun" [(ngModel)]="eventNew.tahun" required>
+                  <input type="number" class="form-control" id="tahun" name="tahun" placeholder="Tahun" [(ngModel)]="eventNew.tahun" required>
                 </div>
               </div>
               <div class="form-group row">
@@ -87,16 +83,14 @@
               </div>
               <div class="form-group row">
                 <label for="startDate" class="col-sm-2 col-form-label">Tanggal Mulai</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="startDate" name="startDate" placeholder="Tanggal Mulai" [(ngModel)]="eventNew.startDate"
-                    required>
+                <div class="col-10">
+                  <input type="date" class="form-control" id="startDate" name="startDate" [(ngModel)]="eventNew.startDate" placeholder="dd/MM/YYYY" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="endDate" class="col-sm-2 col-form-label">Tanggal Akhir</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="endDate" name="endDate" placeholder="Tanggal Akhir" [(ngModel)]="eventNew.endDate"
-                    required>
+                  <input type="date" class="form-control" id="endDate" name="endDate" [(ngModel)]="eventNew.endDate" placeholder="dd/MM/YYYY" required>
                 </div>
               </div>
               <div class="form-group row">
@@ -108,43 +102,39 @@
               <div class="form-group row">
                 <label for="group" class="col-sm-2 col-form-label">Group</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="group" name="group" placeholder="Group" [(ngModel)]="eventNew.group"
-                    required>
+                  <input type="text" class="form-control" id="group" name="group" placeholder="Group" [(ngModel)]="eventNew.group" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="event" class="col-sm-2 col-form-label">Event</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="event" name="event" placeholder="Event" [(ngModel)]="eventNew.event"
-                    required>
+                  <input type="text" class="form-control" id="event" name="event" placeholder="Event" [(ngModel)]="eventNew.event" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="method" class="col-sm-2 col-form-label">Method</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="method" name="method" placeholder="Method" [(ngModel)]="eventNew.method"
-                    required>
+                  <input type="text" class="form-control" id="method" name="method" placeholder="Method" [(ngModel)]="eventNew.method" required>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="internal" class="col-sm-2 col-form-label">Internal</label>
+                <label for="internal" class="col-sm-2 col-form-label">Inline Radios</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="internal" name="internal" placeholder="Internal" [(ngModel)]="eventNew.internal"
-                    required>
+                  <label class="radio-inline" for="internal1"><input type="radio" id="internal1" name="internal" value="1"> Ya </label>
+                  <label class="radio-inline" for="internal1"><input type="radio" id="internal2" name="internal" value="0"> Tidak </label>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="open" class="col-sm-2 col-form-label">Open</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="open" name="open" placeholder="Open" [(ngModel)]="eventNew.open"
-                    required>
+                  <label class="radio-inline" for="open1"><input type="radio" id="open1" name="open" value="1"> Ya </label>
+                  <label class="radio-inline" for="open2"><input type="radio" id="open2" name="open" value="0"> Tidak </label>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="quota" class="col-sm-2 col-form-label">Quota</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="quota" name="quota" placeholder="Quota" [(ngModel)]="eventNew.quota"
-                    required>
+                  <input type="text" class="form-control" id="quota" name="quota" placeholder="Quota" [(ngModel)]="eventNew.quota" required>
                 </div>
               </div>
               <div class="form-group row">
@@ -164,8 +154,7 @@
               <div class="form-group row">
                 <label for="place" class="col-sm-2 col-form-label">Place</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="place" name="place" placeholder="Place" [(ngModel)]="eventNew.place"
-                    required>
+                  <input type="text" class="form-control" id="place" name="place" placeholder="Place" [(ngModel)]="eventNew.place" required>
                 </div>
               </div>
               <div class="form-group row">
@@ -178,35 +167,29 @@
               <div class="form-group row">
                 <label for="pic" class="col-sm-2 col-form-label">PIC</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="pic" name="pic" placeholder="PIC" [(ngModel)]="eventNew.pic"
-                    required>
+                  <input type="text" class="form-control" id="pic" name="pic" placeholder="PIC" [(ngModel)]="eventNew.pic" required>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="endDate" class="col-sm-2 col-form-label">Biaya</label>
+                <label for="biaya" class="col-sm-2 col-form-label">Biaya</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="endDate" name="endDate" placeholder="Tanggal Akhir" [(ngModel)]="eventNew.endDate"
-                    required>
+                  <input type="text" class="form-control" id="biaya" name="biaya" placeholder="Biaya" [(ngModel)]="eventNew.biaya" required>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="endDate" class="col-sm-2 col-form-label">Result</label>
+                <label for="result" class="col-sm-2 col-form-label">Result</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="endDate" name="endDate" placeholder="Tanggal Akhir" [(ngModel)]="eventNew.endDate"
-                    required>
+                  <input type="text" class="form-control" id="result" name="result" placeholder="Result" [(ngModel)]="eventNew.result" required>
                 </div>
               </div>
-              <!-- Button save-->
               <div class="form-group row">
                 <div class="offset-sm-2 col-sm-10">
                   <button type="submit" class="btn btn-primary">Save</button>
-                  <button type="reset" class="btn btn-info" (click)="reset()">Cancel</button>
+                  <button type="reset" class="btn btn-info" (click)="modalEdit.hide()">Cancel</button>
                 </div>
               </div>
             </form>
           </div>
-          <br>
-          <button class="btn btn-info pull-right" (click)="modalEdit.hide()">Close</button>
         </div>
       </div>
     </div>

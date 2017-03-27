@@ -9,6 +9,7 @@ export class LoginComponent implements OnInit {
 
 	username: string = "user001";
 	password: string = "u00123";
+	isValid: boolean = true;
 
 	constructor(private authService: AuthService, private router: Router) { }
 
@@ -16,20 +17,35 @@ export class LoginComponent implements OnInit {
 	}
 
 	login(): void {
+		this.isValid = true;
 		console.log("Username : " + this.username);
 		console.log("Password : " + this.password);
 		this.authService.login(this.username, this.password)
 			.then(sukses => {
+				console.log("Proses Login");
 				if (sukses) {
+					this.isValid = true;
 					this.router.navigate(['/admin/dashboard']);
 				} else {
+					this.isValid = false;
 					console.log("Login gagal");
 				}
-			});
+			}).catch(() => {
+				this.isValid = false;
+				this.handleError;
+			}
+			);
 	}
 
 	redirectSite(): void {
 		this.router.navigate(['/']);
 	}
 
+	handleError(error: any) {
+		// In a real world app, you might use a remote logging infrastructure
+		let errMsg: string;
+		errMsg = error.message ? error.message : error.toString();
+		console.error("Login Error");
+		return errMsg;
+	}
 }

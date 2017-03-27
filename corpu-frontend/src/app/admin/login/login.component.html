@@ -11,17 +11,21 @@
                         <div class="input-group mb-1">
                             <span class="input-group-addon"><i class="icon-user"></i>
                                 </span>
-                            <input [(ngModel)]="username" type="text" class="form-control" placeholder="Username">
+                            <input [(ngModel)]="username" type="text" class="form-control" placeholder="Username" required>
                         </div>
                         <div class="input-group mb-2">
                             <span class="input-group-addon"><i class="icon-lock"></i>
                                 </span>
-                            <input [(ngModel)]="password" type="password" class="form-control" placeholder="Password">
+                            <input [(ngModel)]="password" type="password" class="form-control" placeholder="Password" required>
                         </div>
                         <div class="row">
                             <div class="col-6">
                                 <button (click)="login()" type="button" class="btn btn-primary px-2"><i class="icon-login"></i>&nbsp; Login</button>
                             </div>
+                        </div>
+                        <br>
+                        <div class="alert alert-danger col-12" role="alert" *ngIf="!isValid">
+                            Username atau Password salah.
                         </div>
                     </div>
                 </div>
@@ -33,7 +37,7 @@
                             <p>Sebagai Solusi Mencetak Tenaga Kerja Yang Ahli dan Berkompeten</p>
                             <br>
                             <br>
-                            <button (click)="redirectSite()"  type="button" class="btn btn-secondary" > <i class="icon-screen-desktop"></i>&nbsp; Pegadaian Coporate Site</button>
+                            <button (click)="redirectSite()" type="button" class="btn btn-secondary"> <i class="icon-screen-desktop"></i>&nbsp; Pegadaian Coporate Site</button>
                         </div>
                     </div>
                 </div>
