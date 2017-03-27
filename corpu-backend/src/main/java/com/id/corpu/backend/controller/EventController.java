@@ -28,12 +28,12 @@ public class EventController {
 	@Autowired
 	TblEventDao eventDao;
 
-	@PostMapping("/event/save/")
+	@PostMapping("/api/event/saveEvent")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void saveEvent(@RequestBody @Valid TblEvent event) {
 		eventDao.save(event);
 	}
-	
+
 	@RequestMapping("/api/events/getAllEventsPaged")
 	public Map<String, Object> getAllEventsPaged(@RequestParam(
 			value = "pageNumber", required = true) int pageN, 

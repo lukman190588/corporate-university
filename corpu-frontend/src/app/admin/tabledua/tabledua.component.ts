@@ -5,6 +5,7 @@ import { AuthService } from './../../shared/auth.service';
 
 import { TblEvents } from '../model/TblEvents';
 import 'rxjs/add/operator/delay';
+import { ModalDirective } from 'ng2-bootstrap/modal';
 
 @Component({
   selector: 'app-tabledua',
@@ -19,6 +20,7 @@ export class TableduaComponent implements OnInit {
   p: number;
   total: number;
   loading: boolean;
+  // eventNew: TblEvents;
 
   constructor(private adminservice: AdminserviceService, private authService: AuthService) { }
 
@@ -46,6 +48,35 @@ export class TableduaComponent implements OnInit {
     console.log(this.selectedEvent.id);
   }
 
-  onSubmit() {
+  onSubmit(modalEdit: ModalDirective) {
+    console.log(this.selectedEvent);
+    if (this.selectedEvent.kelas != null && this.selectedEvent.tahun != null
+      && this.selectedEvent.name != null && this.selectedEvent.startDate != null
+      && this.selectedEvent.endDate != null && this.selectedEvent.batch != null
+      && this.selectedEvent.groupEvent != null && this.selectedEvent.event != null
+      && this.selectedEvent.method != null && this.selectedEvent.internal != null
+      && this.selectedEvent.open != null && this.selectedEvent.quota != null
+      && this.selectedEvent.totalTime != null && this.selectedEvent.provider != null
+      && this.selectedEvent.place != null && this.selectedEvent.location != null
+      && this.selectedEvent.pic != null && this.selectedEvent.cost != null
+      && this.selectedEvent.result != null) {
+      if (this.mode == "edit") {
+        this.adminservice.saveEvents(this.selectedEvent).then(
+          hasil => {
+            console.log("Mode Edit");
+            this.selectedEvent = new TblEvents();
+          }
+        );
+      } else if (this.mode == "delete") {
+        console.log("Mode Delete");
+        return;
+      }
+    } else {
+      console.log("Batal");
+      return;
+    }
+    modalEdit.hide();
+    console.log(this.selectedEvent);
   }
+
 }

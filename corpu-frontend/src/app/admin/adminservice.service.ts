@@ -47,6 +47,15 @@ export class AdminserviceService {
     return Promise.resolve("success");
   }
 
+  saveEvents(event: TblEvents): Promise<String> {
+    let url: string = "/api/event/saveEvent";
+    console.log("Menyimpan event : " + JSON.stringify(event));
+    this.authHttp.post(url, event).toPromise()
+      .then(hasil => hasil.status)
+      .catch(error => console.log(error));
+    return Promise.resolve("success");
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);

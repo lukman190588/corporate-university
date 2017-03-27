@@ -6,6 +6,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
@@ -28,7 +30,7 @@ public class TblEvent implements Serializable {
 	private Date startDate;
 	private Date endDate;
 	private int batch;
-	private String group;
+	private String groupEvent;
 	private String event;
 	private String method;
 	private boolean internal;
@@ -44,6 +46,7 @@ public class TblEvent implements Serializable {
 
 	@Id
 	@Column(name = "id", nullable = false, length = 30)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	public String getId() {
 		return id;
 	}
@@ -109,13 +112,13 @@ public class TblEvent implements Serializable {
 		this.batch = batch;
 	}
 
-	@Column(name = "group", nullable = false, length = 30)
-	public String getGroup() {
-		return group;
+	@Column(name = "group_event", nullable = false, length = 30)
+	public String getGroupEvent() {
+		return groupEvent;
 	}
 
-	public void setGroup(String group) {
-		this.group = group;
+	public void setGroupEvent(String groupEvent) {
+		this.groupEvent = groupEvent;
 	}
 
 	@Column(name = "event", nullable = false, length = 30)

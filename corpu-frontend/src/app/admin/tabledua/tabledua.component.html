@@ -61,130 +61,133 @@
         </div>
         <div class="modal-body">
           <div *ngIf="selectedEvent">
-            {{mode}} : {{selectedEvent.id}} : {{selectedEvent.name}}
-            <form (ngSubmit)="onSubmit()">
+            <form (ngSubmit)="onSubmit(modalEdit)">
               <div class="form-group row">
                 <label for="kelas" class="col-sm-2 col-form-label">Kelas</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="kelas" name="kelas" placeholder="Kelas" [(ngModel)]="eventNew.kelas" required>
+                  <input type="text" class="form-control" id="kelas" name="kelas" placeholder="Kelas" [(ngModel)]="selectedEvent.kelas" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="tahun" class="col-sm-2 col-form-label">Tahun</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" id="tahun" name="tahun" placeholder="Tahun" [(ngModel)]="eventNew.tahun" required>
+                  <input type="number" class="form-control" id="tahun" name="tahun" placeholder="Tahun" [(ngModel)]="selectedEvent.tahun" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="name" name="name" placeholder="Name" [(ngModel)]="eventNew.name" required>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Name" [(ngModel)]="selectedEvent.name" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="startDate" class="col-sm-2 col-form-label">Tanggal Mulai</label>
                 <div class="col-10">
-                  <input type="date" class="form-control" id="startDate" name="startDate" [(ngModel)]="eventNew.startDate" placeholder="dd/MM/YYYY" required>
+                  <input type="date" class="form-control" id="startDate" name="startDate" [(ngModel)]="selectedEvent.startDate" placeholder="dd/MM/YYYY"
+                    required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="endDate" class="col-sm-2 col-form-label">Tanggal Akhir</label>
                 <div class="col-sm-10">
-                  <input type="date" class="form-control" id="endDate" name="endDate" [(ngModel)]="eventNew.endDate" placeholder="dd/MM/YYYY" required>
+                  <input type="date" class="form-control" id="endDate" name="endDate" [(ngModel)]="selectedEvent.endDate" placeholder="dd/MM/YYYY"
+                    required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="batch" class="col-sm-2 col-form-label">Batch</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="batch" name="batch" placeholder="Batch" [(ngModel)]="eventNew.batch" required>
+                  <input type="number" class="form-control" id="batch" name="batch" placeholder="Batch" [(ngModel)]="selectedEvent.batch" required>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="group" class="col-sm-2 col-form-label">Group</label>
+                <label for="groupEvent" class="col-sm-2 col-form-label">Group Event</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="group" name="group" placeholder="Group" [(ngModel)]="eventNew.group" required>
+                  <input type="number" class="form-control" id="groupEvent" name="groupEvent" placeholder="groupEvent" [(ngModel)]="selectedEvent.groupEvent" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="event" class="col-sm-2 col-form-label">Event</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="event" name="event" placeholder="Event" [(ngModel)]="eventNew.event" required>
+                  <input type="text" class="form-control" id="event" name="event" placeholder="Event" [(ngModel)]="selectedEvent.event" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="method" class="col-sm-2 col-form-label">Method</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="method" name="method" placeholder="Method" [(ngModel)]="eventNew.method" required>
+                  <input type="text" class="form-control" id="method" name="method" placeholder="Method" [(ngModel)]="selectedEvent.method"
+                    required>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="internal" class="col-sm-2 col-form-label">Inline Radios</label>
+                <label for="internal" class="col-sm-2 col-form-label">Internal</label>
                 <div class="col-sm-10">
-                  <label class="radio-inline" for="internal1"><input type="radio" id="internal1" name="internal" value="1"> Ya </label>
-                  <label class="radio-inline" for="internal1"><input type="radio" id="internal2" name="internal" value="0"> Tidak </label>
+                  <label class="radio-inline" for="internal1"><input type="radio" id="internal1" name="internal" [(ngModel)]="selectedEvent.internal" checked="selectedEvent.internal" value="true"> Ya </label>
+                  <label class="radio-inline" for="internal1"><input type="radio" id="internal2" name="internal" [(ngModel)]="selectedEvent.internal" checked="selectedEvent.internal" value="false"> Tidak </label>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="open" class="col-sm-2 col-form-label">Open</label>
                 <div class="col-sm-10">
-                  <label class="radio-inline" for="open1"><input type="radio" id="open1" name="open" value="1"> Ya </label>
-                  <label class="radio-inline" for="open2"><input type="radio" id="open2" name="open" value="0"> Tidak </label>
+                  <label class="radio-inline" for="open1"><input type="radio" id="open1" name="open" [(ngModel)]="selectedEvent.open" value="true"> Ya </label>
+                  <label class="radio-inline" for="open2"><input type="radio" id="open2" name="open" [(ngModel)]="selectedEvent.open" value="false"> Tidak </label>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="quota" class="col-sm-2 col-form-label">Quota</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="quota" name="quota" placeholder="Quota" [(ngModel)]="eventNew.quota" required>
+                  <input type="number" class="form-control" id="quota" name="quota" placeholder="Quota" [(ngModel)]="selectedEvent.quota" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="totalTime" class="col-sm-2 col-form-label">Total Time</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="totalTime" name="totalTime" placeholder="Total Time" [(ngModel)]="eventNew.totalTime"
+                  <input type="number" class="form-control" id="totalTime" name="totalTime" placeholder="Total Time" [(ngModel)]="selectedEvent.totalTime"
                     required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="provider" class="col-sm-2 col-form-label">Provider</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="provider" name="provider" placeholder="Provider" [(ngModel)]="eventNew.provider"
+                  <input type="text" class="form-control" id="provider" name="provider" placeholder="Provider" [(ngModel)]="selectedEvent.provider"
                     required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="place" class="col-sm-2 col-form-label">Place</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="place" name="place" placeholder="Place" [(ngModel)]="eventNew.place" required>
+                  <input type="text" class="form-control" id="place" name="place" placeholder="Place" [(ngModel)]="selectedEvent.place" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="location" class="col-sm-2 col-form-label">Location</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="location" name="location" placeholder="Location" [(ngModel)]="eventNew.location"
+                  <input type="text" class="form-control" id="location" name="location" placeholder="Location" [(ngModel)]="selectedEvent.location"
                     required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="pic" class="col-sm-2 col-form-label">PIC</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="pic" name="pic" placeholder="PIC" [(ngModel)]="eventNew.pic" required>
+                  <input type="text" class="form-control" id="pic" name="pic" placeholder="PIC" [(ngModel)]="selectedEvent.pic" required>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="biaya" class="col-sm-2 col-form-label">Biaya</label>
+                <label for="cost" class="col-sm-2 col-form-label">Biaya</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="biaya" name="biaya" placeholder="Biaya" [(ngModel)]="eventNew.biaya" required>
+                  <input type="number" class="form-control" id="cost" name="cost" placeholder="Biaya" [(ngModel)]="selectedEvent.cost" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="result" class="col-sm-2 col-form-label">Result</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="result" name="result" placeholder="Result" [(ngModel)]="eventNew.result" required>
+                  <input type="number" class="form-control" id="result" name="result" placeholder="Result" [(ngModel)]="selectedEvent.result"
+                    required>
                 </div>
               </div>
               <div class="form-group row">
                 <div class="offset-sm-2 col-sm-10">
-                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button type="submit" class="btn btn-primary" data-dismiss="modalEdit">Save</button>
                   <button type="reset" class="btn btn-info" (click)="modalEdit.hide()">Cancel</button>
                 </div>
               </div>

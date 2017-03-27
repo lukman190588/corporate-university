@@ -6,7 +6,7 @@ export class TblEvents {
     startDate: Date;
     endDate: Date;
     batch: number;
-    group: string;
+    groupEvent: string;
     event: string;
     method: string;
     internal: boolean;

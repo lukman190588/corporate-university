@@ -9,4 +9,6 @@ import com.id.corpu.backend.entity.TblEvent;
 public interface TblEventDao extends JpaRepository<TblEvent, String> {
 
 	List<TblEvent> findById(String id);
+	
+	TblEvent findByIdAndKelas(String id, String kelas);
 }
