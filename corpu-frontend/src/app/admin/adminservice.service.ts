@@ -33,7 +33,7 @@ export class AdminserviceService {
     requestOptions.search = params;
     let userUrl = "/api/events/getAllEventsPaged";
     return this.authHttp.get(userUrl, requestOptions)
-      .timeout(2000)
+      .timeout(30000)
       .map(
       response => response.json() as TblEventsResponse
       )
