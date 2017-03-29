@@ -61,7 +61,8 @@ public class EventController {
 	    	TreeMap<String, Object> tResp = new TreeMap<String, Object>();
 	    	tResp.put("items", listPaged.get(pageNumber-1));
 	    	tResp.put("total", list.size());
-	    	Thread.sleep(new Random().nextInt((2000 - 500) + 1) + 500);
+//	    	Thread.sleep(new Random().nextInt((2000 - 500) + 1) + 500);
+	    	Thread.sleep(10000);
 	    	return tResp;
 		} catch (Exception e) {
 			e.printStackTrace();

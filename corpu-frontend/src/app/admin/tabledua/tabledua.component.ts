@@ -20,7 +20,8 @@ export class TableduaComponent implements OnInit {
   p: number;
   total: number;
   loading: boolean;
-  // eventNew: TblEvents;
+  isError: boolean = false;
+  errorMessage: string = "";
 
   constructor(private adminservice: AdminserviceService, private authService: AuthService) { }
 
@@ -31,13 +32,21 @@ export class TableduaComponent implements OnInit {
   getPage(page: number) {
     this.events = []
     this.loading = true;
-    this.adminservice.getAsyncEvents(this.pageSize, page)
-      .then(
+    this.adminservice.getAllEvents(this.pageSize, page)
+      .subscribe(
       hasil => {
         this.events = hasil.items;
         this.total = hasil.total;
+        this.isError = false;
         this.loading = false;
-      });
+      },
+      error => {
+        console.log(<any>error);
+        this.isError = true;
+        this.loading = false;
+        this.errorMessage = "error 401 - Koneksi ke Server Timeout!";
+      },
+    );
   }
 
   showModal(event: TblEvents, mode: string, obj: any) {
@@ -61,7 +70,7 @@ export class TableduaComponent implements OnInit {
       && this.selectedEvent.pic != null && this.selectedEvent.cost != null
       && this.selectedEvent.result != null) {
       if (this.mode == "edit") {
-        this.adminservice.saveEvents(this.selectedEvent).then(
+        this.adminservice.saveEvents(this.selectedEvent).subscribe(
           hasil => {
             console.log("Mode Edit");
             this.selectedEvent = new TblEvents();

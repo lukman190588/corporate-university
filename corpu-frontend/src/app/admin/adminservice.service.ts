@@ -5,24 +5,26 @@ import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angul
 import { UserTable } from './model/UserTable';
 import { TblEvents } from './model/TblEvents';
 import { TblEventsResponse } from './model/TblEventsResponse';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/timeout';
+import 'rxjs/add/observable/throw';
+
 @Injectable()
 export class AdminserviceService {
 
   constructor(public authHttp: AuthHttp, private http: Http) { }
 
-  getAllUser(): Promise<UserTable[]> {
+  getAllUser(): Observable<UserTable[]> {
     let userUrl = "/api/user/getAllUser";
     console.log("Menjalankan service getalluser");
     return this.authHttp.get(userUrl)
-      .toPromise()
-      .then(
-      response => response.json() as UserTable[]
-      )
+      .map(response => response.json() as UserTable[])
       .catch(this.handleError);
   }
 
-  getAsyncEvents(pageSize: number, page: number): Promise<TblEventsResponse> {
+  getAllEvents(pageSize: number, page: number): Observable<TblEventsResponse> {
     let params: URLSearchParams = new URLSearchParams();
     params.set('pageSize', pageSize + "");
     params.set('pageNumber', page + "");
@@ -31,33 +33,39 @@ export class AdminserviceService {
     requestOptions.search = params;
     let userUrl = "/api/events/getAllEventsPaged";
     return this.authHttp.get(userUrl, requestOptions)
-      .toPromise()
-      .then(
+      .timeout(2000)
+      .map(
       response => response.json() as TblEventsResponse
       )
       .catch(this.handleError);
   }
 
-  saveUser(usr: UserTable): Promise<String> {
+  saveUser(usr: UserTable): Observable<UserTable> {
     let url: string = "/api/user/saveUser";
     console.log("Menyimpan user : " + JSON.stringify(usr));
-    this.authHttp.post(url, usr).toPromise()
-      .then(hasil => hasil.status)
-      .catch(error => console.log(error));
-    return Promise.resolve("success");
+    return this.authHttp.post(url, usr)
+      .map(hasil => hasil.status)
+      .catch(this.handleError);
   }
 
-  saveEvents(event: TblEvents): Promise<String> {
+  saveEvents(event: TblEvents): Observable<TblEvents> {
     let url: string = "/api/event/saveEvent";
     console.log("Menyimpan event : " + JSON.stringify(event));
-    this.authHttp.post(url, event).toPromise()
-      .then(hasil => hasil.status)
-      .catch(error => console.log(error));
-    return Promise.resolve("success");
+    return this.authHttp.post(url, event)
+      .map(hasil => hasil.status)
+      .catch(this.handleError);
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+  private handleError(error: Response | any) {
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
   }
 }

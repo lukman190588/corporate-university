@@ -27,7 +27,7 @@ export class FormsatuComponent implements OnInit {
       && this.user.email != null
       && this.user.fullname != null) {
       this.user.id = "1";
-      this.adminservice.saveUser(this.user).then(hasil => {
+      this.adminservice.saveUser(this.user).subscribe(hasil => {
         console.log("User berhasil disimpan");
         this.user = new UserTable();
       });
