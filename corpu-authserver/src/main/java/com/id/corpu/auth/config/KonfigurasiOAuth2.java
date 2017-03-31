@@ -33,13 +33,13 @@ public class KonfigurasiOAuth2 {
                    .authorizedGrantTypes("authorization_code", "refresh_token")
                    .scopes("list-users","user-info")
                    .authorities("OAUTH_CLIENT")
-                   .accessTokenValiditySeconds(180)
+                   .accessTokenValiditySeconds(3600 * 24)
                .and().withClient("tabunganangular")
                    .secret("angular321")
                    .authorizedGrantTypes("password")
                    .scopes("list-users","user-info")
                    .authorities("OAUTH_CLIENT")
-                   .accessTokenValiditySeconds(600)
+                   .accessTokenValiditySeconds(3600 * 24)
                    .autoApprove(true);
 		}
 

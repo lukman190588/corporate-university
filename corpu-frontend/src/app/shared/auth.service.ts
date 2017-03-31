@@ -51,13 +51,13 @@ export class AuthService {
 					console.log("permissions", userObject.permissions);
 					localStorage.setItem(STORAGE_KEY_AUTH, JSON.stringify(userObject));
 					return true;
+				} else {
+					return false;
 				}
-				return false;
 			}).catch(() => {
 				this.handleError;
 				return false;
-				}
-			);
+			});
 		return loginResp;
 	}
 

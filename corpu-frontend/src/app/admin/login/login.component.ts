@@ -23,18 +23,16 @@ export class LoginComponent implements OnInit {
 		this.authService.login(this.username, this.password)
 			.then(sukses => {
 				console.log("Proses Login");
-				if (sukses) {
-					this.isValid = true;
+				this.isValid = sukses;
+				if (this.isValid) {
 					this.router.navigate(['/admin/dashboard']);
 				} else {
-					this.isValid = false;
 					console.log("Login gagal");
 				}
-			}).catch(() => {
-				this.isValid = false;
+			},
+			error => {
 				this.handleError;
-			}
-			);
+			});
 	}
 
 	redirectSite(): void {

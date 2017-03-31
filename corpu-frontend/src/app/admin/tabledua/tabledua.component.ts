@@ -4,7 +4,6 @@ import { AdminserviceService } from '../adminservice.service';
 import { AuthService } from './../../shared/auth.service';
 
 import { TblEvents } from '../model/TblEvents';
-import 'rxjs/add/operator/delay';
 import { ModalDirective } from 'ng2-bootstrap/modal';
 
 @Component({
