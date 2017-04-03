@@ -10,6 +10,7 @@ export class LoginComponent implements OnInit {
 	username: string = "user001";
 	password: string = "u00123";
 	isValid: boolean = true;
+	errorMessage: string = "";
 
 	constructor(private authService: AuthService, private router: Router) { }
 
@@ -24,14 +25,17 @@ export class LoginComponent implements OnInit {
 			.then(sukses => {
 				console.log("Proses Login");
 				this.isValid = sukses;
+				console.log(this.isValid);
 				if (this.isValid) {
 					this.router.navigate(['/admin/dashboard']);
 				} else {
 					console.log("Login gagal");
+					this.errorMessage = "Username atau Password salah.";
 				}
 			},
 			error => {
 				this.handleError;
+				this.errorMessage = error.message;
 			});
 	}
 

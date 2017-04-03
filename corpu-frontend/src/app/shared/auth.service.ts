@@ -54,7 +54,7 @@ export class AuthService {
 				} else {
 					return false;
 				}
-			}).catch(() => {
+			}).catch(error => {
 				this.handleError;
 				return false;
 			});

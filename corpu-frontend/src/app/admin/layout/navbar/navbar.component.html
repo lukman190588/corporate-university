@@ -9,11 +9,11 @@
     
     <ul class="nav navbar-nav ml-auto" *ngIf="authService.sudahLogin()">
         <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle>
-                <img src="../../../../img/avatar/avatar.png" class="img-avatar" alt="">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle>
+                <img src="./src/img/avatar/avatar.png" class="img-avatar" alt="">
                 <span class="hidden-md-down"><b>{{currentUser().fullname}}</b></span>
             </a>
-            <div class="dropdown-menu dropdown-menu-right" dropdownMenu aria-labelledby="simple-dropdown">
+            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
 
                 <a class="dropdown-item"  routerLink="about"><i class="icon-user"></i> Informasi</a>
                 <div class="divider"></div>
@@ -21,5 +21,4 @@
             </div>
         </li>
     </ul>
-
 </header>
