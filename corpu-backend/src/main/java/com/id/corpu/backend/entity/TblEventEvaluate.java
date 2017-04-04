@@ -23,7 +23,7 @@ public class TblEventEvaluate implements Serializable {
 	private int idParticipant;
 	private String idSurvey;
 	private BigDecimal result;
-	private String desc;
+	private String description;
 
 	@Id
 	@Column(name = "id_event", nullable = false, length = 30)
@@ -74,12 +74,12 @@ public class TblEventEvaluate implements Serializable {
 		this.result = result;
 	}
 
-	@Column(name = "desc", nullable = false)
-	public String getDesc() {
-		return desc;
+	@Column(name = "description", nullable = false)
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }
