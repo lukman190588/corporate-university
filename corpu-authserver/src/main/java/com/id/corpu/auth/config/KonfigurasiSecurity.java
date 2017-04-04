@@ -32,13 +32,13 @@ public class KonfigurasiSecurity extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().dataSource(dataSource)
 		.passwordEncoder(passwordEncoder())
-        .usersByUsernameQuery("select username, password, active as enabled from s_user where username=?")
+        .usersByUsernameQuery("select username, password, active as enabled from user where username=?")
         .authoritiesByUsernameQuery("select u.username, p.name as authority " +
-        "from s_user u " +
-        "inner join s_user_role ur on u.id = ur.id_user " +
-        "inner join s_role r on r.id = ur.id_role " +
-        "inner join s_role_permission rp on r.id = rp.id_role " +
-        "inner join s_permission p on p.id = rp.id_permission " +
+        "from user u " +
+        "inner join user_role ur on u.id = ur.id_user " +
+        "inner join role r on r.id = ur.id_role " +
+        "inner join role_permission rp on r.id = rp.id_role " +
+        "inner join permission p on p.id = rp.id_permission " +
         "where u.username=?");
 	}
 	

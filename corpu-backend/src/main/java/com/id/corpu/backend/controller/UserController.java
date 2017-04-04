@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.id.corpu.backend.dao.UserDao;
 import com.id.corpu.backend.dao.UserResponse;
-import com.id.corpu.backend.entity.User;
+import com.id.corpu.backend.entity.TblUser;
 
 @RestController
 public class UserController {
@@ -50,11 +50,10 @@ public class UserController {
 	public List<UserResponse> getAllUser() {
 		List<UserResponse> listUser = new ArrayList<UserResponse>();
 		listUser.clear();
-		for (User user : userDao.findAll()) {
+		for (TblUser user : userDao.findAll()) {
 			UserResponse response = new UserResponse();
 			response.setId(user.getId());
 			response.setUsername(user.getUsername());
-			response.setEmail(user.getEmail());
 			response.setFullname(user.getFullname());
 			listUser.add(response);
 		}
@@ -64,14 +63,13 @@ public class UserController {
 	@PostMapping("/api/user/saveUser")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void savePenjualan(@RequestBody @Valid UserResponse newUser) {
-		User userLast = userDao.findTop1ByOrderByIdDesc();
+		TblUser userLast = userDao.findTop1ByOrderByIdDesc();
 		int passInt = Integer.parseInt(userLast.getId().substring(1)) + 1;
 		String newId = String.format("%04d", passInt);
-		User user = new User();
+		TblUser user = new TblUser();
 		user.setId("u"+ newId);
 		user.setUsername(newUser.getUsername().replace(" ", ""));
 		user.setPassword(new BCryptPasswordEncoder().encode(newUser.getPassword()));
-		user.setEmail(newUser.getEmail());
 		user.setFullname(newUser.getFullname());
 		user.setActive(1);
 		userDao.save(user);

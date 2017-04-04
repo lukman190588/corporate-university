@@ -10,9 +10,10 @@ import javax.persistence.Table;
 public class TblUser {
 
 	private String id;
-	private String name;
+	private String username;
 	private String password;
-	private boolean active;
+	private String fullname;
+	private int active;
 
 	@Id
 	@Column(name = "id", nullable = false, length = 30)
@@ -22,15 +23,6 @@ public class TblUser {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	@Column(name = "name", nullable = false)
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	@Column(name = "password", nullable = false)
@@ -43,12 +35,30 @@ public class TblUser {
 	}
 
 	@Column(name = "active", nullable = false)
-	public boolean getActive() {
+	public int getActive() {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(int active) {
 		this.active = active;
+	}
+	
+	@Column(name = "username", nullable = false)
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	@Column(name = "fullname", nullable = false)
+	public String getFullname() {
+		return fullname;
+	}
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
 	}
 
 }
