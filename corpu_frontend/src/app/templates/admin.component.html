@@ -1,0 +1,18 @@
+<navigation-bar></navigation-bar>
+
+<div class="app-body">
+  <side-bar></side-bar>
+
+  <!-- Main content -->
+  <main class="main">
+    <br>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="row justify-content-md-center" *ngIf="cekPage()" style="margin-top: 20%;">
+      <button class="btn btn-lg btn-outline-primary btn-lg icon-refresh font-5xl" (click)="doRefreshPage()"><strong> refresh </strong></button>
+    </div>
+    <!-- /.conainer-fluid -->
+  </main>
+
+</div>

@@ -1,0 +1,26 @@
+<div *ngIf="authService.sudahLogin()" class="card">
+  <div class="card-header">
+    Table Header SATU
+  </div>
+  <div class="card-block">
+    <table class="table table-striped" *ngIf="dataUser">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>FullName</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of dataUser | paginate: { itemsPerPage: 10, currentPage: p }">
+          <th scope="row">{{data.id}}</th>
+          <td>{{data.username}}</td>
+          <td>{{data.email}}</td>
+          <td>{{data.fullname}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event" class="text-center"></pagination-controls>
+  </div>
+</div>

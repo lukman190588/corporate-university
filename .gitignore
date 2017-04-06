@@ -28,6 +28,8 @@ build/Release
 
 # Dependency directories
 node_modules
+corpu_frontend/node_modules
+corpu-frontend/node_modules
 jspm_packages
 
 # Optional npm cache directory

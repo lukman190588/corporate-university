@@ -1,0 +1,205 @@
+<div *ngIf="authService.sudahLogin()">
+  <div class="card">
+    <div class="card-header">
+      Table Server Paged
+    </div>
+    <div class="card-block">
+      <table class="table table-sm table-striped table-condensed" *ngIf="events">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Kelas</th>
+            <th>Tahun</th>
+            <th>Nama</th>
+            <th>Tgl Mulai</th>
+            <th>Tgl Selesai</th>
+            <th>Batch</th>
+            <th>Quota</th>
+            <th>Ttl Time</th>
+            <th>Provider</th>
+            <th>Tempat</th>
+            <th>Lokasi</th>
+            <th>PIC</th>
+            <th>Biaya</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="small" *ngFor="let acara of events | paginate: { id: 'server', itemsPerPage: pageSize, currentPage: p, totalItems: total }">
+            <td>{{acara.id}}</td>
+            <td>{{acara.kelas}}</td>
+            <td>{{acara.tahun}}</td>
+            <td>{{acara.name}}</td>
+            <td>{{acara.startDate | date: 'dd-MM-yyyy'}}</td>
+            <td>{{acara.endDate | date: 'dd-MM-yyyy'}}</td>
+            <td>{{acara.batch}}</td>
+            <td>{{acara.quota}}</td>
+            <td>{{acara.totalTime}} sks</td>
+            <td>{{acara.provider}}</td>
+            <td>{{acara.place}}</td>
+            <td>{{acara.location}}</td>
+            <td>{{acara.pic}}</td>
+            <td class="text-right">{{acara.cost | number : '1.2-2'}}</td>
+            <td><button class="btn btn-outline-primary btn-sm icon-note" (click)="showModal(acara, 'edit', modalEdit.show())"></button></td>
+            <td><button class="btn btn-outline-danger btn-sm icon-trash" (click)="showModal(acara, 'delete', modalEdit.show())"></button></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <div class="spinner text-center" *ngIf="loading"></div>
+      <div class="alert alert-danger col-12" role="alert" *ngIf="isError">
+        {{errorMessage}}
+      </div>
+      <br>
+      <pagination-controls (pageChange)="getPage(p = $event)" id="server" class="text-center"></pagination-controls>
+    </div>
+  </div>
+
+  <div bsModal #modalEdit="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Large modal</h4>
+          <button type="button" class="close pull-right icon-close" (click)="modalEdit.hide()" aria-label="Close">
+        </button>
+        </div>
+        <div class="modal-body">
+          <div *ngIf="selectedEvent">
+            <form (ngSubmit)="onSubmit(modalEdit)">
+              <div class="form-group row">
+                <label for="kelas" class="col-sm-2 col-form-label">Kelas</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="kelas" name="kelas" placeholder="Kelas" [(ngModel)]="selectedEvent.kelas" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="tahun" class="col-sm-2 col-form-label">Tahun</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" id="tahun" name="tahun" placeholder="Tahun" [(ngModel)]="selectedEvent.tahun" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Name" [(ngModel)]="selectedEvent.name" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="startDate" class="col-sm-2 col-form-label">Tanggal Mulai</label>
+                <div class="col-10">
+                  <input type="date" class="form-control" id="startDate" name="startDate" [(ngModel)]="selectedEvent.startDate" placeholder="dd/MM/YYYY"
+                    required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="endDate" class="col-sm-2 col-form-label">Tanggal Akhir</label>
+                <div class="col-sm-10">
+                  <input type="date" class="form-control" id="endDate" name="endDate" [(ngModel)]="selectedEvent.endDate" placeholder="dd/MM/YYYY"
+                    required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="batch" class="col-sm-2 col-form-label">Batch</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" id="batch" name="batch" placeholder="Batch" [(ngModel)]="selectedEvent.batch" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="groupEvent" class="col-sm-2 col-form-label">Group Event</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" id="groupEvent" name="groupEvent" placeholder="groupEvent" [(ngModel)]="selectedEvent.groupEvent" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="event" class="col-sm-2 col-form-label">Event</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="event" name="event" placeholder="Event" [(ngModel)]="selectedEvent.event" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="method" class="col-sm-2 col-form-label">Method</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="method" name="method" placeholder="Method" [(ngModel)]="selectedEvent.method"
+                    required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="internal" class="col-sm-2 col-form-label">Internal</label>
+                <div class="col-sm-10">
+                  <label class="radio-inline" for="internal1"><input type="radio" id="internal1" name="internal" [(ngModel)]="selectedEvent.internal" value="true"> Ya </label>
+                  <label class="radio-inline" for="internal1"><input type="radio" id="internal2" name="internal" [(ngModel)]="selectedEvent.internal" value="false"> Tidak </label>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="open" class="col-sm-2 col-form-label">Open</label>
+                <div class="col-sm-10">
+                  <label class="radio-inline" for="open1"><input type="radio" id="open1" name="open" [(ngModel)]="selectedEvent.open" value="true"> Ya </label>
+                  <label class="radio-inline" for="open2"><input type="radio" id="open2" name="open" [(ngModel)]="selectedEvent.open" value="false"> Tidak </label>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="quota" class="col-sm-2 col-form-label">Quota</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" id="quota" name="quota" placeholder="Quota" [(ngModel)]="selectedEvent.quota" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="totalTime" class="col-sm-2 col-form-label">Total Time</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" id="totalTime" name="totalTime" placeholder="Total Time" [(ngModel)]="selectedEvent.totalTime"
+                    required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="provider" class="col-sm-2 col-form-label">Provider</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="provider" name="provider" placeholder="Provider" [(ngModel)]="selectedEvent.provider"
+                    required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="place" class="col-sm-2 col-form-label">Place</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="place" name="place" placeholder="Place" [(ngModel)]="selectedEvent.place" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="location" class="col-sm-2 col-form-label">Location</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="location" name="location" placeholder="Location" [(ngModel)]="selectedEvent.location"
+                    required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="pic" class="col-sm-2 col-form-label">PIC</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="pic" name="pic" placeholder="PIC" [(ngModel)]="selectedEvent.pic" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="cost" class="col-sm-2 col-form-label">Biaya</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" id="cost" name="cost" placeholder="Biaya" [(ngModel)]="selectedEvent.cost" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="result" class="col-sm-2 col-form-label">Result</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" id="result" name="result" placeholder="Result" [(ngModel)]="selectedEvent.result"
+                    required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="offset-sm-2 col-sm-10">
+                  <button type="submit" class="btn btn-primary" data-dismiss="modalEdit">Save</button>
+                  <button type="reset" class="btn btn-info" (click)="modalEdit.hide()">Cancel</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
