@@ -17,45 +17,23 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { TablesatuComponent } from './admin/tablesatu/tablesatu.component';
 import { TableduaComponent } from './admin/tabledua/tabledua.component';
 import { FormsatuComponent } from './admin/formsatu/formsatu.component';
+import { TablesearchComponent } from './admin/tablesearch/tablesearch.component';
 
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: FrontComponent,
-    pathMatch: 'full'
-  },
+  { path: '',  component: FrontComponent, pathMatch: 'full'},
+  { path: 'login', loadChildren: './admin/login/login.module#LoginModule'},
   {
     path: 'admin',
     component: AdminComponent,
-    data: {
-      title: 'Home'
-    },
+    data: { title: 'Home'},
+    canActivate: [CekLoginGuard],
     children: [
-      {
-        path: 'login',
-        loadChildren: './admin/login/login.module#LoginModule',
-      },
-      {
-        path: 'dashboard',
-        component: DashboardComponent,
-        canActivate: [CekLoginGuard]
-      },
-      {
-        path: 'tablesatu',
-        component: TablesatuComponent,
-        canActivate: [CekLoginGuard]
-      },
-      {
-        path: 'tabledua',
-        component: TableduaComponent,
-        canActivate: [CekLoginGuard]
-      },
-      {
-        path: 'formsatu',
-        component: FormsatuComponent,
-        canActivate: [CekLoginGuard]
-      }
+      { path: 'dashboard', component: DashboardComponent},
+      { path: 'tablesatu', component: TablesatuComponent},
+      { path: 'tabledua', component: TableduaComponent},
+      { path: 'formsatu', component: FormsatuComponent},
+      { path: 'tablesearch', component: TablesearchComponent},
     ]
   },
   { path: '**', component: p404Component }

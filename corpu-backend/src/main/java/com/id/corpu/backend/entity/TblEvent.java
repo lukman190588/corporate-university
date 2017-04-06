@@ -25,7 +25,7 @@ public class TblEvent implements Serializable {
 	private static final long serialVersionUID = 2632836621536956615L;
 	private String id;
 	private String kelas;
-	private int tahun;
+	private String tahun;
 	private String name;
 	private Date startDate;
 	private Date endDate;
@@ -66,11 +66,11 @@ public class TblEvent implements Serializable {
 	}
 
 	@Column(name = "tahun", nullable = false, length = 4)
-	public int getTahun() {
+	public String getTahun() {
 		return tahun;
 	}
 
-	public void setTahun(int tahun) {
+	public void setTahun(String tahun) {
 		this.tahun = tahun;
 	}
 

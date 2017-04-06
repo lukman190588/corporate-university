@@ -1,7 +1,7 @@
 export class TblEvents {
     id: string;
     kelas: string;
-    tahun: number;
+    tahun: string;
     name: string;
     startDate: Date;
     endDate: Date;

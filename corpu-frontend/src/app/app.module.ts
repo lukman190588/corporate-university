@@ -39,7 +39,8 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AdminmoduleModule } from './admin/adminmodule/adminmodule.module';
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { FormsatuComponent } from './admin/formsatu/formsatu.component';
-import { TableduaComponent } from './admin/tabledua/tabledua.component'; // <-- import the module
+import { TableduaComponent } from './admin/tabledua/tabledua.component';
+import { TablesearchComponent } from './admin/tablesearch/tablesearch.component'; // <-- import the module
 // import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
@@ -62,6 +63,7 @@ import { TableduaComponent } from './admin/tabledua/tabledua.component'; // <-- 
     DashboardComponent,
     FormsatuComponent,
     TableduaComponent,
+    TablesearchComponent,
   ],
   imports: [
     AppRoutingModule,

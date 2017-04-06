@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { AdminserviceService } from '../adminservice.service';
 import { AuthService } from './../../shared/auth.service';
@@ -7,37 +7,41 @@ import { TblEvents } from '../model/TblEvents';
 import { ModalDirective } from 'ng2-bootstrap/modal';
 
 @Component({
-  selector: 'app-tabledua',
-  templateUrl: './tabledua.component.html',
-  styleUrls: ['./tabledua.component.scss'],
+  selector: 'app-tablesearch',
+  templateUrl: './tablesearch.component.html',
+  styleUrls: ['./tablesearch.component.scss']
 })
-export class TableduaComponent implements OnInit {
+export class TablesearchComponent implements OnInit {
   selectedEvent: TblEvents;
   mode: string;
-  events: TblEvents[] = [];
+
+  eventQuery: TblEvents = new TblEvents;
+  eventResult: TblEvents[] = [];
   pageSize: number = 10;
   p: number;
   total: number;
-  loading: boolean;
+  loading: boolean = false;
   isError: boolean = false;
   errorMessage: string = "";
 
   constructor(private adminservice: AdminserviceService, private authService: AuthService) { }
 
-  ngOnInit() {
-    this.getPage(1);
-  }
-
   getPage(page: number) {
-    this.events = [];
+    this.eventResult = [];
+    this.total = 0;
     this.loading = true;
-    this.adminservice.getAllEvents(this.pageSize, page)
+    this.isError = false;
+    this.adminservice.getAllEventsBy(this.pageSize, page, this.eventQuery.name, this.eventQuery.kelas, this.eventQuery.tahun)
       .subscribe(
       hasil => {
-        this.events = hasil.items;
+        this.eventResult = hasil.items;
         this.total = hasil.total;
-        this.isError = false;
         this.loading = false;
+        console.log(this.total);
+        if (this.total == 0) {
+          this.isError = true;
+          this.errorMessage = "Data Tidak Ditemukan!";
+        }
       },
       error => {
         console.log(<any>error);
@@ -46,6 +50,23 @@ export class TableduaComponent implements OnInit {
         this.errorMessage = "error 401 - Koneksi ke Server Timeout!";
       },
     );
+  }
+
+  doSearch() {
+    this.getPage(1);
+  }
+
+  reset(): void {
+    this.resetForm();
+    this.eventResult = [];
+    this.total = 0;
+    this.loading = false;
+  }
+
+  resetForm() {
+    this.eventQuery.kelas = "";
+    this.eventQuery.tahun = "";
+    this.eventQuery.name = "";
   }
 
   showModal(event: TblEvents, mode: string, obj: any) {
@@ -85,6 +106,9 @@ export class TableduaComponent implements OnInit {
     }
     modalEdit.hide();
     console.log(this.selectedEvent);
+  }
+
+  ngOnInit() {
   }
 
 }

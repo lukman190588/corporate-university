@@ -40,6 +40,37 @@ export class AdminserviceService {
       .catch(this.handleError);
   }
 
+  getAllEventsBy(pageSize: number, page: number, nama: string, kls: string, thn: string): Observable<TblEventsResponse> {
+    let name = "", kelas = "", tahun = "";
+    console.log(kelas + "-" + tahun + "-" + name);
+    if (nama != null) {
+      name = nama;
+    }
+    if (kls != null) {
+      kelas = kls;
+    }
+    if (thn != null) {
+      tahun = thn + "";
+    }
+    console.log(kelas + "-" + tahun + "-" + name);
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('pageSize', pageSize + "");
+    params.set('pageNumber', page + "");
+    params.set('kelas', kelas);
+    params.set('tahun', tahun + "");
+    params.set('name', name);
+
+    let requestOptions = new RequestOptions();
+    requestOptions.search = params;
+    let userUrl = "/api/events/getAllEventsBy";
+    return this.authHttp.get(userUrl, requestOptions)
+      .timeout(30000)
+      .map(
+      response => response.json() as TblEventsResponse
+      )
+      .catch(this.handleError);
+  }
+
   saveUser(usr: UserTable): Observable<UserTable> {
     let url: string = "/api/user/saveUser";
     console.log("Menyimpan user : " + JSON.stringify(usr));
