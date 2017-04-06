@@ -4,7 +4,7 @@ import { AdminserviceService } from '../adminservice.service';
 import { AuthService } from './../../shared/auth.service';
 
 import { TblEvents } from '../model/TblEvents';
-import { ModalDirective } from 'ng2-bootstrap/modal';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-tabledua',

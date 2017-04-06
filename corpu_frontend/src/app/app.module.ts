@@ -10,8 +10,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
-import { BsDropdownModule } from 'ngx-bootstrap';
-import { ModalModule } from 'ng2-bootstrap';
+import { BsDropdownModule, ModalModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 
